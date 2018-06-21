@@ -25,7 +25,7 @@ import java.util.Locale;
 @ComponentScan(basePackages = "pl.app")
 @EnableWebMvc
 @EnableTransactionManagement
-//@EnableJpaRepositories(basePackages = "pl.camp.repository")
+@EnableJpaRepositories(basePackages = "pl.camp.repository")
 public class AppConfig extends WebMvcConfigurerAdapter {
 	@Bean
 	public LocalEntityManagerFactoryBean entityManagerFactory() {
