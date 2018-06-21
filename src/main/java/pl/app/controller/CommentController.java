@@ -4,10 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import pl.app.entity.Analysis;
 import pl.app.entity.Comment;
 import pl.app.entity.User;
@@ -31,7 +28,7 @@ public class CommentController {
     @RequestMapping(value = "analysis/{id}/addComment", method = RequestMethod.GET)
     public String showFom(@PathVariable Long id, Model model){
         model.addAttribute("comment",new Comment());
-    return "comment/addForm";
+    return "redirect:/";
     }
 
     @ModelAttribute("user")
@@ -45,6 +42,9 @@ public class CommentController {
         if(result.hasErrors()){
             return "comment/addForm";
         }
+        if(comment.getId()!=null){
+
+        }
         User user = getLogger(session);
         comment.setUser(user);
         Analysis analysis = analysisRepository.findAnalysisById(id);
@@ -55,13 +55,11 @@ public class CommentController {
         analysisRepository.save(analysis);
         return "redirect:/analysis/"+id;
     }
-    @ModelAttribute("ratings")
-    public List<Double> getRatings(){
-        List<Double> ratings = new ArrayList<>();
-        for(Double i=0.0;i<5.5;i+=0.5){
-            ratings.add(i);
-        }
-        return ratings;
+    @RequestMapping(value="analysis/{id}/delete", method = RequestMethod.GET)
+    public String removeComment(@PathVariable Long id, @RequestParam Long commentId){
+        Comment comment = commentRepository.findCommentById(commentId);
+        commentRepository.delete(commentId);
+        System.out.println(commentId);
+        return "redirect:/analysis/"+id;
     }
-
 }

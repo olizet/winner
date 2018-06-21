@@ -1,6 +1,7 @@
 package pl.app.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import pl.app.entity.Analysis;
 import pl.app.entity.User;
 
@@ -11,4 +12,8 @@ public interface AnalysisRepository extends JpaRepository<Analysis,Long> {
     Analysis findAnalysisById(Long id);
     List<Analysis> findAnalysesByOwner(User owner);
     List<Analysis> findAnalysesByFixture(String fixture);
+
+    @Query(value = "SELECT*FROM analysis ORDER BY created DESC", nativeQuery = true)
+    List<Analysis> getFresh();
+
 }

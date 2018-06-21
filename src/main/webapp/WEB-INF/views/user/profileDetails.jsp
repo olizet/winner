@@ -18,7 +18,7 @@
 Profile: ${user.firstName} ${user.lastName}
 Added analyses:
 <c:forEach items="${addedAnalyses}" var="analysis">
-    <c:out value="${analysis.title}"/> <a href = "../analysis/${analysis.id}">show details</a>
+    <c:out value="${analysis.title}"/> <a href = "../analysis/${analysis.id}/">show details</a>
     <br/>
 </c:forEach>
 <a href="../analysis/add">Add analysis</a>

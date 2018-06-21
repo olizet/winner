@@ -18,4 +18,6 @@ public interface CommentRepository extends JpaRepository<Comment,Long> {
 
     @Query(value = "SELECT AVG(rating) FROM comments WHERE analysis_id=?1", nativeQuery = true)
     Double getAvgRatingCamp(Long id);
+
+    Comment findCommentById(Long id);
 }

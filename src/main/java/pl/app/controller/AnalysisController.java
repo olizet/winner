@@ -15,6 +15,7 @@ import pl.app.repository.UserRepository;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -33,6 +34,12 @@ public class AnalysisController {
         model.addAttribute("analyses",analyses);
         return "analysis/list";
     }
+    @ModelAttribute("freshAnalyses")
+    public List<Analysis> getFreshAnalyses(){
+        List <Analysis> freshAnalyses = analysisRepository.getFresh();
+        return freshAnalyses;
+    }
+
     @RequestMapping(value="/add",method = RequestMethod.POST)
     public String addCamp(@Valid Analysis analysis, BindingResult result, Model model, HttpSession session){
         if(result.hasErrors()){
@@ -43,7 +50,7 @@ public class AnalysisController {
         analysisRepository.save(analysis);
         return "redirect:/analysis";
     }
-    @RequestMapping(value = "/add", method = RequestMethod.GET)
+    @RequestMapping(value = "add", method = RequestMethod.GET)
     public String showForm(@RequestParam(required = false) Long id, HttpSession session, Model model){
         if(analysisRepository.findAnalysisById(id)!=null){
             Analysis analysis = analysisRepository.findAnalysisById(id);
@@ -65,12 +72,19 @@ public class AnalysisController {
         User user = userRepository.findFirstByEmail(email);
         return user;
     }
-    @RequestMapping(value="/{id}",method = RequestMethod.GET)
-    public String showDetails(@PathVariable Long id, Model model){
-        Analysis analysis = analysisRepository.findAnalysisById(id);
+    @RequestMapping(value="/{analysisId}",method = RequestMethod.GET)
+    public String showDetails(@PathVariable Long analysisId,@RequestParam(required = false) Long commentId, Model model,HttpSession session){
+        Analysis analysis = analysisRepository.findAnalysisById(analysisId);
         model.addAttribute("analysis",analysis);
         List<Comment> comments = commentRepository.findCommentsByAnalysis(analysis);
         model.addAttribute("commentsByAnalysis",comments);
+        if(commentId!=null){
+            Comment comment = commentRepository.findCommentById(commentId);
+            model.addAttribute("comment",comment);
+        }else{
+            model.addAttribute("comment",new Comment());
+        }
+
         return "/analysis/details";
     }
 }
