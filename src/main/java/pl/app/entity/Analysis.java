@@ -5,6 +5,7 @@ import org.hibernate.validator.constraints.NotBlank;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -22,9 +23,18 @@ public class Analysis {
     private User owner;
     @Column(columnDefinition = "TEXT")
     private String description;
-    @OneToMany(mappedBy = "analysis")
+    @OneToMany(mappedBy = "analysis",cascade = CascadeType.ALL)
     private List<Comment> comments = new ArrayList<>();
     private Double rating;
+    private Date created = new Date();
+
+    public Date getCreated() {
+        return created;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
+    }
 
     public Long getId() {
         return id;
