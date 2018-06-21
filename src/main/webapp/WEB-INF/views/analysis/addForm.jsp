@@ -8,14 +8,10 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<link rel="stylesheet" href='../resources/css/style.css' />
-<scripst src="resouces/js/app.js"/>
-<html>
-<head>
-    <title>Title</title>
-</head>
-<body>
-<h2>Add analysis</h2>
+<jsp:include page="../fragments/headerLogger.jsp" />
+</div>
+<h2 id="addAnalysis">Add analysis</h2>
+
 <c:if test="${empty user}">
     <p>If you want to add analysis, please log in</p>
     <a href="../user/">Register</a>
@@ -23,14 +19,17 @@
     <a href="../user/login">Log In</a>
 </c:if>
 <c:if test="${not empty user}">
+    <div class="form-group">
 <form:form modelAttribute="analysis" method="post">
     <form:hidden path="id"/>
-    Title: <form:input path="title" required="required"/><form:errors path="title" element="div" cssClass="error" />
-    Fixture: <form:input path="fixture" required="required"/><form:errors path="fixture" element="div" cssClass="error" />
-    Result: <form:input path="result" required="required"/><form:errors path="result" element="div" cssClass="error" />
-    Description: <form:input path="description"/><form:errors path="description" element="div" cssClass="error" />
-    <input type="submit">
+    Title: <form:input class="form-control" path="title" required="required"/><form:errors path="title" element="div" cssClass="error" />
+    Fixture: <form:input class="form-control" path="fixture" required="required"/><form:errors path="fixture" element="div" cssClass="error" />
+    Odds: <form:input class="form-control" path="odds" required="required"/><form:errors path="odds" element="div" cssClass="error" />
+    Result: <form:input class="form-control" path="result" required="required"/><form:errors path="result" element="div" cssClass="error" />
+    Description: <form:textarea class="form-control" path="description"/><form:errors path="description" element="div" cssClass="error" />
+    <input type="submit" value="add analysis">
 </form:form>
+    </div>
 </c:if>
 </body>
 </html>

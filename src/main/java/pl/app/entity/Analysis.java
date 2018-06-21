@@ -27,6 +27,15 @@ public class Analysis {
     private List<Comment> comments = new ArrayList<>();
     private Double rating;
     private Date created = new Date();
+    private Double odds;
+
+    public Double getOdds() {
+        return odds;
+    }
+
+    public void setOdds(Double odds) {
+        this.odds = odds;
+    }
 
     public Date getCreated() {
         return created;

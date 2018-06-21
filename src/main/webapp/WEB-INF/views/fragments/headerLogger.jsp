@@ -10,19 +10,31 @@
 <html>
 <head>
     <title>Title</title>
+    <jsp:include page="header.jsp"></jsp:include>
 </head>
 <body>
+<div class="container">
+    <div class="row">
+        <div class="col-4">
+            <a class="btn btn-secondary" href="${pageContext.request.contextPath}/">Home</a>
+        </div>
+        <div class="col-8">
 <c:if test="${empty user}">
-    <a href="../user/">Register</a>
-<form method="post" action="../user/login">
-    <input type="text" name="email"/>
-    <input type="password" name="password"/>
-    <input type="submit" value="Log In">
+    <a id="registerButton" href="../user/" class="btn btn-primary">Register</a>
+<form id="loggerForm" method="post" action="../user/login">
+    <input placeholder="email" type="text" name="email"/>
+    <input placeholder="password" type="password" name="password"/>
+    <input class="btn btn-primary" type="submit" value="Log In">
 </form>
+        </div>
+    </div>
 </c:if>
 <c:if test="${not empty user}">
-    <h3>Welcome ${user.firstName} ${user.lastName}</h3>
-    <a href="../user/details">Profile</a>
-    <a href="../user/logout">Log out</a>
+    <div class="logged">
+    <p id="userNameP">${user.firstName} ${user.lastName}</p>
+    <a id="profileButton" class="btn btn-primary" href="../../user/details">Profile</a>
+    <a id="logOutButton" class="btn btn-warning" href="../../user/logout">Log out</a>
+    </div>
 </c:if>
+</div>
 

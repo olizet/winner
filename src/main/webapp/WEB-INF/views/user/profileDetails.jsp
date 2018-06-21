@@ -8,27 +8,41 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<html>
-<head>
-    <title>Title</title>
-    <link rel="stylesheet" href='../resources/css/style.css' />
-    <scripst src="resouces/js/app.js"/>
-</head>
-<body>
-Profile: ${user.firstName} ${user.lastName}
-Added analyses:
+<jsp:include page="../fragments/headerLogger.jsp" />
+</div>
+<div class="row">
+<p id="profileMain">Profile: ${user.firstName} ${user.lastName}</p><a id="editButton" href="../user/">Edit profile</a><br/>
+</div>
+<a id = "addButton" class="btn btn-success" href="../analysis/add">Add analysis</a><br/>
+
+<p class="centerText">Your last 5 Added analyses:</p>
+<table class="table"><thead class="thead-dark">
+    <tr>
+        <th scope="col">Fixture</th>
+        <th scope="col">Result</th>
+        <th scope="col">Odds</th>
+        <th scope="col">Rating</th>
+        <th scope="col">Details</th>
+    </tr>
+</thead>
+    <tbody>
 <c:forEach items="${addedAnalyses}" var="analysis">
-    <c:out value="${analysis.title}"/> <a href = "../analysis/${analysis.id}/">show details</a>
-    <br/>
+    <tr>
+    <td><c:out value="${analysis.fixture}"/></td>
+        <td><c:out value="${analysis.result}"/></td>
+        <td><c:out value="${analysis.odds}"/></td>
+        <td><c:out value="${analysis.rating}"/></td>
+        <td><a href = "../analysis/${analysis.id}/">show details</a></td>
+    </tr>
 </c:forEach>
-<a href="../analysis/add">Add analysis</a>
-<a href="../user/">Edit profile</a>
-Last comments:
+    </tbody>
+</table>
+
+<p class="centerText">Your last 5 comments:</p>
 <c:forEach items="${addedComments}" var="comment">
-    Camping: <c:out value="${comment.analysis.title}"/>
-    Text: <c:out value="${comment.text}"/>
-    Rating: <c:out value="${rating}"/>
-    <br/>
+    <p><span class="category"> Title: </span><c:out value="${comment.analysis.title}"/> <span class="category">Fixture: </span><c:out value="${comment.analysis.fixture}"/>
+        <span class="category">Rating:</span><c:out value="${comment.rating}"/> </p>
+    <p> Text: <c:out value="${comment.text}"/></p
 </c:forEach>
 
 </body>

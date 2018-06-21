@@ -30,7 +30,7 @@ public class AnalysisController {
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String showList(@RequestParam(required = false) String search, Model model,HttpSession session){
-        List<Analysis> analyses =  analysisRepository.findAnalysesByFixture(search);
+        List<Analysis> analyses =  analysisRepository.getTopAnalysis(search);
         model.addAttribute("analyses",analyses);
         return "analysis/list";
     }
@@ -48,7 +48,7 @@ public class AnalysisController {
         User user = getLogger(session);
         analysis.setOwner(user);
         analysisRepository.save(analysis);
-        return "redirect:/analysis";
+        return "redirect:/user/details";
     }
     @RequestMapping(value = "add", method = RequestMethod.GET)
     public String showForm(@RequestParam(required = false) Long id, HttpSession session, Model model){

@@ -10,10 +10,10 @@
 <html>
 <head>
     <title>Title</title>
-    <link rel="stylesheet" href='../resources/css/style.css' />
-    <scripst src="../resouces/js/app.js"/>
+    <link href="../resources/css/style.css" rel="stylesheet" type="text/css" >
 </head>
 <body>
+<jsp:include page="../fragments/header.jsp" />
 <h2>Add user</h2>
 <form:form modelAttribute="user" method="post">
     <form:hidden path="id"/>

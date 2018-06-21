@@ -7,14 +7,15 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<link rel="stylesheet" href='resources/css/style.css' />
-<scripst src="resouces/js/app.js"/>
 <jsp:include page="../fragments/headerLogger.jsp" />
+</div>
 <h3>List of Analyses</h3>
-<c:forEach items="${analyses}" var="analysis">
-    <c:out value="${analysis.title}"/> Rating: <c:out value="${analysis.rating}"/>
-    <a href = "analysis/${analysis.id}">show details</a>
-    <br/>
+<c:forEach items="${analyses}" var ="analysis">
+    <p class="title"> <c:out value="${analysis.title}"/></p>
+    <p class="normal"><span class="category">Fixture: </span><c:out value="${analysis.fixture}"/> <span class="category">Result: </span><c:out value="${analysis.result}"/> </p>
+    <p class="normal"><span class="category">Odds: </span><c:out value ="${analysis.odds}"/> <c:if test="${not empty analysis.rating}">Rating: <c:out value="${analysis.rating}"/></c:if></p>
+    <a class="center btn btn-info" href="/analysis/${analysis.id}">show details</a>
+    <hr>
 </c:forEach>
 </body>
 </html>
