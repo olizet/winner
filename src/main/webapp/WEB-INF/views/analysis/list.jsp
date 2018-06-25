@@ -9,13 +9,19 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:include page="../fragments/headerLogger.jsp" />
 </div>
-<h3>List of Analyses</h3>
+<c:if test="${empty analyses}">
+    <h3 class="listHeader">Sorry, no analyses for your match. Come on do your own!</h3>
+</c:if>
+<c:if test="${not empty analyses}">
+<h3 class="listHeader">List of Analyses</h3>
 <c:forEach items="${analyses}" var ="analysis">
-    <p class="title"> <c:out value="${analysis.title}"/></p>
-    <p class="normal"><span class="category">Fixture: </span><c:out value="${analysis.fixture}"/> <span class="category">Result: </span><c:out value="${analysis.result}"/> </p>
-    <p class="normal"><span class="category">Odds: </span><c:out value ="${analysis.odds}"/> <c:if test="${not empty analysis.rating}">Rating: <c:out value="${analysis.rating}"/></c:if></p>
-    <a class="center btn btn-info" href="/analysis/${analysis.id}">show details</a>
+    <p class="title"> <c:out value="${analysis.title}"/>
+    <p><span class="spanList">Fixture: </span><c:out value="${analysis.fixture}"/> <span class="spanList">Result: </span><c:out value="${analysis.result}"/> </p>
+    <p class="inline"> <span class="spanList">Result: </span><c:out value="${analysis.result}"/> <span class="spanList">Odds: </span><c:out value ="${analysis.odds}"/> <c:if test="${not empty analysis.rating}">
+        <span class="spanList">Rating: </span><c:out value="${analysis.rating}"/></c:if></p>
+    <a class="centerText btn btn-info" href="/analysis/${analysis.id}">show details</a>
     <hr>
 </c:forEach>
+</c:if>
 </body>
 </html>

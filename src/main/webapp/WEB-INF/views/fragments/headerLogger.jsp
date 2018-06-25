@@ -13,12 +13,12 @@
     <jsp:include page="header.jsp"></jsp:include>
 </head>
 <body>
-<div class="container">
-    <div class="row">
-        <div class="col-4">
+    <div class="loggerContainer">
+        <div>
             <a class="btn btn-secondary" href="${pageContext.request.contextPath}/">Home</a>
         </div>
-        <div class="col-8">
+            <p id="loginError"><c:out value="${loginError}"/></p>
+        <div>
 <c:if test="${empty user}">
     <a id="registerButton" href="../user/" class="btn btn-primary">Register</a>
 <form id="loggerForm" method="post" action="../user/login">
@@ -26,15 +26,15 @@
     <input placeholder="password" type="password" name="password"/>
     <input class="btn btn-primary" type="submit" value="Log In">
 </form>
+</c:if>
+            <c:if test="${not empty user}">
+                <div class="logged">
+                    <p id="userNameP">${user.firstName} ${user.lastName}</p>
+                    <a class="btn btn-primary" href="../../user/details">Profile</a>
+                    <a class="btn btn-warning" href="../../user/logout">Log out</a>
+                </div>
+            </c:if>
         </div>
     </div>
-</c:if>
-<c:if test="${not empty user}">
-    <div class="logged">
-    <p id="userNameP">${user.firstName} ${user.lastName}</p>
-    <a id="profileButton" class="btn btn-primary" href="../../user/details">Profile</a>
-    <a id="logOutButton" class="btn btn-warning" href="../../user/logout">Log out</a>
-    </div>
-</c:if>
-</div>
+
 

@@ -25,6 +25,7 @@ public class User {
     @Email
     @NotBlank
     @NotNull
+    @Column(unique = true)
     private String email;
     @NotNull
     @Size(min=4)

@@ -12,8 +12,8 @@
 </div>
 <h3>${analysis.title}</h3>
 <c:if test="${user.id == analysis.owner.id}">
-    <a href="../add?id=${analysis.id}">Edit analysis</a>
-    <a href="../delete?id=${analysis.id}">Delete analysis</a>
+    <a href="${pageContext.request.contextPath}/analysis/add?id=${analysis.id}">Edit analysis</a>
+    <a href="${pageContext.request.contextPath}/analysis/delete?id=${analysis.id}">Delete analysis</a>
 </c:if>
 <p><span class="category">Fixture: </span><c:out value="${analysis.fixture}"/></p>
 <p><span class="category">Result: </span><c:out value="${analysis.result}"/><span class="category"> Rating: </span><c:out value="${analysis.rating}"/></p>
@@ -25,7 +25,7 @@
     <p id="#comment">Add comment</p>
     <form:form modelAttribute="comment" method="post" action="../../analysis/${analysis.id}/addComment">
         <form:hidden path="id"/>
-        Text: <form:input path="text" required="required"/><form:errors path="text" element="div" cssClass="error" />
+        Text: <form:textarea path="text" required="required"/><form:errors path="text" element="div" cssClass="error" />
         Rating: <form:select path="rating">
         <form:option value="0" label="0"/>
         <form:option value="0.5" label="0.5"/>

@@ -3,6 +3,8 @@ package pl.app.entity;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.Date;
@@ -27,6 +29,7 @@ public class Analysis {
     private List<Comment> comments = new ArrayList<>();
     private Double rating;
     private Date created = new Date();
+    @DecimalMax("500.0") @DecimalMin("0.0")
     private Double odds;
 
     public Double getOdds() {

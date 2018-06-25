@@ -84,7 +84,6 @@ public class AnalysisController {
         }else{
             model.addAttribute("comment",new Comment());
         }
-
         return "/analysis/details";
     }
 }
