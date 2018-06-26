@@ -1,7 +1,7 @@
-# winner
+# Winner
 Welcome to my first project on github. 
-My Application called Winner is about sharing predictions for sport events with other users. 
-##Getting started
+My Application called Winner is about sharing predictions and analyses for sport events with other users. 
+## Getting started
 To get started you have to connect to mySQL in file "/src/main/resources/META-INF/persistence.xml"
 
 ```
