@@ -1,6 +1,8 @@
 package pl.app.entity;
 
+import org.apache.commons.math3.util.Precision;
 import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.DecimalMax;
@@ -31,6 +33,15 @@ public class Analysis {
     private Date created = new Date();
     @DecimalMax("500.0") @DecimalMin("0.0")
     private Double odds;
+    private Date date;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
 
     public Double getOdds() {
         return odds;
@@ -109,6 +120,6 @@ public class Analysis {
     }
 
     public void setRating(Double rating) {
-        this.rating = rating;
+        this.rating = Precision.round(rating,2);
     }
 }

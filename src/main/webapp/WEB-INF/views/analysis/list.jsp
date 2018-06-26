@@ -16,9 +16,10 @@
 <h3 class="listHeader">List of Analyses</h3>
 <c:forEach items="${analyses}" var ="analysis">
     <p class="title"> <c:out value="${analysis.title}"/>
-    <p><span class="spanList">Fixture: </span><c:out value="${analysis.fixture}"/> <span class="spanList">Result: </span><c:out value="${analysis.result}"/> </p>
-    <p class="inline"> <span class="spanList">Result: </span><c:out value="${analysis.result}"/> <span class="spanList">Odds: </span><c:out value ="${analysis.odds}"/> <c:if test="${not empty analysis.rating}">
-        <span class="spanList">Rating: </span><c:out value="${analysis.rating}"/></c:if></p>
+    <p><span class="spanList">Fixture: </span><c:out value="${analysis.fixture}"/> <span class="spanList"> Date: </span><c:out value="${analysis.date}"/></p>
+    <p><span class="spanList">Result: </span><c:out value="${analysis.result}"/> </p>
+    <p class="inline"> <span class="spanList">Result: </span><c:out value="${analysis.result}"/> <span class="spanList">Odds: </span><c:out value ="${analysis.odds}"/>
+        <c:if test="${not empty analysis.rating}"><span class="spanList">Rating: </span><c:out value="${analysis.rating}"/></c:if></p>
     <a class="centerText btn btn-info" href="/analysis/${analysis.id}">show details</a>
     <hr>
 </c:forEach>

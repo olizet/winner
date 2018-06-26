@@ -10,14 +10,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:include page="../fragments/headerLogger.jsp" />
 </div>
-<h3>${analysis.title}</h3>
+<h3 class="listHeader">${analysis.title}</h3>
 <c:if test="${user.id == analysis.owner.id}">
     <a href="${pageContext.request.contextPath}/analysis/add?id=${analysis.id}">Edit analysis</a>
     <a href="${pageContext.request.contextPath}/analysis/delete?id=${analysis.id}">Delete analysis</a>
 </c:if>
-<p><span class="category">Fixture: </span><c:out value="${analysis.fixture}"/></p>
-<p><span class="category">Result: </span><c:out value="${analysis.result}"/><span class="category"> Rating: </span><c:out value="${analysis.rating}"/></p>
-<p><span class="category">Description: </span><c:out value="${analysis.description}"/></p>
+<p><span class="spanList">Fixture: </span><c:out value="${analysis.fixture}"/><span class="spanList"> Date: </span><c:out value="${analysis.date}"/></p>
+<p><span class="spanList">Result: </span><c:out value="${analysis.result}"/><span class="spanList"> Rating: </span><c:out value="${analysis.rating}"/></p>
+<p><span class="spanList">Description: </span><c:out value="${analysis.description}"/></p>
 
 
 <c:if test="${not empty user}">

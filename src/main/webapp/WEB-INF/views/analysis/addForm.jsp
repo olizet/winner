@@ -24,10 +24,16 @@
     <form:hidden path="id"/>
     Title: <form:input class="form-control" path="title" required="required"/><form:errors path="title" element="div" cssClass="error" />
     Fixture: <form:input class="form-control" path="fixture" required="required"/><form:errors path="fixture" element="div" cssClass="error" />
+    Date: <form:input type="date" class="form-control" path="date" required="required"/><form:errors path="date" element="div" cssClass="error" />
     Odds: <form:input class="form-control" path="odds" required="required"/><form:errors path="odds" element="div" cssClass="error" />
     Result: <form:input class="form-control" path="result" required="required"/><form:errors path="result" element="div" cssClass="error" />
     Description: <form:textarea class="form-control" path="description"/><form:errors path="description" element="div" cssClass="error" />
+    <c:if test="${empty analysis.id}">
     <input type="submit" value="add analysis">
+    </c:if>
+    <c:if test="${not empty analysis.id}">
+        <input type="submit" value="edit analysis">
+    </c:if>
 </form:form>
     </div>
 </c:if>

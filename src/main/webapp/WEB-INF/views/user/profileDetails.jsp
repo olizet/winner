@@ -10,10 +10,10 @@
 
 <jsp:include page="../fragments/headerLogger.jsp" />
 
-<p id="profileMain">Profile: ${user.firstName} ${user.lastName}</p><a href="../user/"> Edit profile</a>
+<p id="profileMain">Profile: ${user.firstName} ${user.lastName}</p>
 <a id = "addButton" class="btn btn-success" href="../analysis/add">Add analysis</a>
 
-<p class="detailsAnalysisTitle">Your last 10 analyses:</p>
+<p class="detailsAnalysisTitle">Your last added analyses:</p>
 <table class="table"><thead class="thead-dark">
     <tr>
         <th scope="col">Fixture</th>
@@ -28,7 +28,7 @@
 <c:forEach items="${addedAnalyses}" var="analysis">
     <tr>
     <td><c:out value="${analysis.fixture}"/></td>
-        <td><c:out value=""/></td>
+        <td><c:out value="${analysis.date}"/></td>
         <td><c:out value="${analysis.result}"/></td>
         <td><c:out value="${analysis.odds}"/></td>
         <td><c:out value="${analysis.rating}"/></td>
@@ -38,7 +38,7 @@
     </tbody>
 </table>
 
-<p class="detailsAnalysisTitle">Your last 10 comments:</p>
+<p class="detailsAnalysisTitle">Your last comments:</p>
 <c:forEach items="${addedComments}" var="comment">
     <p><a class="spanList" href="/analysis/${comment.analysis.id}"><span class="spanList"> Title: </span><c:out value="${comment.analysis.title}"/> </a>
         <span class="spanList">Rating: </span><c:out value="${comment.rating}"/> </p>

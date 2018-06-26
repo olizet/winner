@@ -45,18 +45,26 @@ public class UserController {
 
     @RequestMapping(value="/",method = RequestMethod.POST)
     public String addUser(@Valid User user, BindingResult result, HttpSession session) throws MessagingException {
-    if(result.hasErrors()){
+        Long id = null;
+        if(result.hasErrors()){
         return "user/addForm";
     }
+    if(session.getAttribute("email")!=null){
+        String email = (String) session.getAttribute("email");
+        User currentUser = userRepository.findFirstByEmail(email);
+        id = currentUser.getId();
+        user.setId(id);
+        userRepository.save(user);
+    } else {
         User existingUser = userRepository.findFirstByEmail(user.getEmail());
         if (existingUser != null) {
-            FieldError error = new FieldError("user", "email", "Email musi być unikalny");
+            FieldError error = new FieldError("user", "email", "Sorry, this e-mail is already signed up");
             result.addError(error);
-            return "user/addForm";
+            return "user/addForm"; }
+        GenerateMail.generateAndSendEmail(user.getEmail());
+        userRepository.save(user);
         }
-    GenerateMail.generateAndSendEmail(user.getEmail());
     session.setAttribute("email",user.getEmail());
-    userRepository.save(user);
     return "redirect:/";
     }
     @RequestMapping(value="/login", method=RequestMethod.GET)

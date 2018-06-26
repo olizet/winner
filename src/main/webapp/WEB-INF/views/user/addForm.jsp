@@ -11,7 +11,6 @@
 <html>
 <head>
     <title>Title</title>
-    <link href="../resources/css/style.css" rel="stylesheet" type="text/css" >
 </head>
 <body>
 <jsp:include page="../fragments/header.jsp" />
