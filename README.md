@@ -5,10 +5,11 @@ My Application called Winner is about sharing predictions and analyses for sport
 1. First, you have to import project to your IDE.
 2. Next, you have to set up server. I used local Tomcat.
 3. Now, connection to mySQL database
-You have to open file "/src/main/resources/META-INF/persistence.xml".
-Then set up your name of database, user, password in:
+- set up a new database in your mySQL or import sample prepared by myself to mySQL. It's uploaded.
+- open file "/src/main/resources/META-INF/persistence.xml".
+Then set up name of database, user, password in:
 ```
-<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/winner" />
+<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/name_of_database" />
 <property name="javax.persistence.jdbc.user" value="user" />
 <property name="javax.persistence.jdbc.password" value="password" />
 ```
