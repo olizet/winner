@@ -2,19 +2,33 @@
 Welcome to my first project on github. 
 My Application called Winner is about sharing predictions and analyses for sport events with other users. 
 ## Getting started
-To get started you have to connect to mySQL in file "/src/main/resources/META-INF/persistence.xml".
-You have to set up your name of database, user, password
-
+1. First, you have to import project to your IDE.
+2. Next, you have to set up server. I used local Tomcat.
+3. Now, connection to mySQL database
+You have to open file "/src/main/resources/META-INF/persistence.xml".
+Then set up your name of database, user, password in:
 ```
 <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/winner" />
-<property name="javax.persistence.jdbc.user" value="<user>" />
-<property name="javax.persistence.jdbc.password" value="<password>" />
+<property name="javax.persistence.jdbc.user" value="user" />
+<property name="javax.persistence.jdbc.password" value="password" />
 ```
-If you want you can use sample of database prepared by me. It's already uploaded -> winner.sql
-
-Next step is to set up a server.
+If you want you can use sample of database prepared by me. It's already uploaded -> winner.sql. Just import it to mySQL.
 
 After this operation, application is ready to start
+
+## Technologies used
+- Java 8
+- Spring (Framework, Data)
+- JPA(Hibernate)
+- mySQL
+- .jsp
+- Bootstrap
+- jBcrypt
+
+## Things to improve
+- One of the first things I have to deal with is functionality of searcher input. Currently it takes exact order of teams.
+- User should have their personal rating, not only the predictions
+- many more
 
 ## Authors
 
